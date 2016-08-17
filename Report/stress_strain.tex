@@ -1,0 +1,6 @@
+\section{Stresses and Strains}
+
+I had trouble with the implementation of the stresses and strains in the 2D code so the study recorded below was conducted.  I first looked at the basics of stresses and strains and the ground principals of internal resultant loadings in a body.  I then investigated the implementation of these stress and strain principals in continuum mechanics and in previous FEM codes.  Finally I propose an implementation of the stresses and strains in the basic AEM implementation and do verifications of stresses and strains with analytical results and FEM obtained results. 
+
+Essentially the calculation of the stresses and strains are explained in a very limited way in the articles explaining the principals of AEM.  Currently my understanding is that the normal springs can only provide stiffness in the normal direction from the element and the shear springs in the shear direction.  It is thus my understanding that the displacements should be divided into the normal and shear for each spring pair and then used to calculate the strains and stresses.  
+

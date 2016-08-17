@@ -1,0 +1,21 @@
+\boolfalse {citerequest}\boolfalse {citetracker}\boolfalse {pagetracker}\boolfalse {backtracker}\relax 
+\defcounter {refsection}{0}\relax 
+\select@language {english}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {1}{\ignorespaces Modelling of structure to AEM [\cite {First_AEM}]\relax }}{3}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {2}{\ignorespaces Breakdown of Papers published with modelling methods using AEM [\cite {First_AEM}]\relax }}{3}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {3}{\ignorespaces Degrees of Freedom and Element shape with Contact location shown [\cite {First_AEM}]\relax }}{4}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {4}{\ignorespaces Two elements with normal and shear spring connection [\cite {Blog_python_AEM}]\relax }}{5}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {5}{\ignorespaces Effects of number of springs on rotational stiffness [\cite {First_AEM}]\relax }}{6}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {6}{\ignorespaces Flow chart of an elastic loading condition AEM program [\cite {First_AEM}]\relax }}{7}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {7}{\ignorespaces Element and element edge numbering used in Poisson effect inclusion [\cite {First_AEM}]\relax }}{8}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {8}{\ignorespaces Horizontal displacement of element 0 with Poisson effect taken into account [\cite {First_AEM}]\relax }}{9}
+\defcounter {refsection}{0}\relax 
+\contentsline {figure}{\numberline {9}{\ignorespaces Values to add to stiffness matrix for unit displacement in all DOF for element one in Figure \ref {fig:Poisson_effect_element_grid_AEM} [\cite {First_AEM}]\relax }}{10}

@@ -1,0 +1,109 @@
+\documentclass[a4paper,12pt]{article}
+
+% Include all the packages required.
+\usepackage[cm]{fullpage}
+\usepackage{amsmath}
+\usepackage{authblk}
+\usepackage[version=3]{mhchem}
+\usepackage{titlesec}
+\usepackage[english]{babel}
+\usepackage{csquotes}
+\usepackage[T1]{fontenc}
+\usepackage[backend=bibtex,style=authoryear]{biblatex}
+\usepackage{fancyhdr}
+\usepackage{float}
+\usepackage{subcaption}
+\usepackage{graphicx}
+\usepackage{colortbl}
+\usepackage[version=3]{mhchem}
+\usepackage[numbered]{mcode}
+
+% Import the bibliography data.
+\addbibresource{Master_bib.bib}
+
+% Define all the macros required in the dissertation. These macros contain text that you want to use in multiple locations in the document.
+\def\mycountry{South Africa}
+\def\myuniversity{University of Pretoria}
+\def\myfaculty{Faculty of Engineering, Built Environment and Information Technology}
+\def\mydepartment{Pyrometalurgical Modelling Group}
+\def\myname{A.H. Kotze}
+\def\myaffiliation{M.Eng student, \myuniversity, \mycountry\\ \mydepartment}
+\def\mydegree{B.Eng(Hons) Metallurgical, B.Eng Mech}
+\def\mysubmissiondate{\today}
+\def\mytitle{Investigation 004 \\ Applied Element Method}
+
+% Set all the identifying information for the document.
+\title{\mytitle}
+\author{\myname}
+\affil{\myaffiliation \\ \mydegree}
+\date{\today}
+
+
+% Begin creating the document
+\begin{document}
+\pagenumbering{gobble}
+
+\pagenumbering{roman}
+% Create the outer title page.
+\thispagestyle{headings}
+\maketitle
+%\makesubtitle
+\newpage
+\tableofcontents
+\newpage
+\listoffigures
+\newpage
+\lstlistoflistings
+%\listoftables
+\cleardoublepage 
+\pagenumbering{arabic}
+\pagestyle{headings}
+\setlength{\headheight}{15.2pt}
+\pagestyle{fancy}
+\renewcommand{\footrulewidth}{0.4pt}% default is 0pt
+
+
+\section*{Document Purpose}
+The purpose of this document is to explain the Applied Element Method (AEM).  It includes the first principals of the mathematics governing the method and can be used when coding a solver using the AEM. This document will also explain in more detail the mathematics of the method found in a series of papers starting with [\cite{First_AEM}].  It combines the information from the papers with additional information obtained from other sources, easing the implementation of the method. 
+
+
+\section*{Target Audience}
+
+\paragraph{Herman Kotze}  
+To use this document when coding an AEM solver.   
+\paragraph{Johan Zietsman}  
+For verification of my work and act as an introduction to AEM
+\paragraph{Schalk Kok}  
+For verification of my work and act as an introduction to AEM
+
+
+\newpage
+
+\section{Introduction}
+There are several cases where other modelling methods proved to be insufficient.  These cases include modelling of masonry walls with independent bricks under different loading cases.  These cases are usually high in contact areas and need to be able to handle crack initiation and growth.  In my personal experience rigid body motion easily occurs when several objects are in contact with one another resulting in methods such as FEM failing.  In the past attempts have been made to model these sort of cases with FEM and DEM however both proved to be computationally very expensive and requires special treatment of methods.  Also specifically for DEM poor constitutive laws are used for brick interfaces [\cite{Brick_Masonry_wall}].   
+
+Hereafter follows a breakdown of the mathematics used in AEM.  I also include sections with possible coding implications and classes that might be used.  This work is mostly based on the work and series of papers starting with [\cite{First_AEM}].  I use other sources for easier application or additional information.  In blue text throughout the document I include my thoughts on certain aspects of the method and how I plan to use it. 
+
+
+\newpage
+\input{Math.tex}
+\newpage
+\input{stress_strain.tex}
+\newpage
+\input{Python_code.tex}
+
+
+\newpage
+\defbibheading{bibintoc}[\refname]{%
+\chapter*{Refrences}%
+\markboth{1}{1}
+\addcontentsline{toc}{chapter}{References}}
+\printbibliography[heading=bibintoc]
+
+
+
+
+\end{document}
+
+
+

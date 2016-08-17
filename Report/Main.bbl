@@ -1,0 +1,96 @@
+% $ biblatex auxiliary file $
+% $ biblatex version 2.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\entry{Brick_Masonry_wall}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Bishnu Hari~Pandey}{B.~H.~P.}%
+     {Kimiro~Meguro}{K.~M.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{BHPKM1}
+  \strng{fullhash}{BHPKM1}
+  \field{labelyear}{2004}
+  \field{sortinit}{B}
+  \field{title}{SIMULATION OF BRICK MASONRY WALL BEHAVIOR UNDER IN- PLANE
+  LATERAL LOADING USING APPLIED ELEMENT METHOD}
+  \field{journaltitle}{13th World Conference on Earthquake Engineering}
+  \field{year}{2004}
+\endentry
+
+\entry{First_AEM}{article}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Meguro~K.}{M.~K.}%
+     {Tagel-Din~H.}{T.-D.~H.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{MKTDH1}
+  \strng{fullhash}{MKTDH1}
+  \field{labelyear}{2000}
+  \field{sortinit}{M}
+  \field{title}{Applied Element Method for Structural Analysis: Theory and
+  Application for Linear Materials}
+  \field{volume}{17}
+  \field{journaltitle}{Structural Eng. Earthquake Eng. JCSE}
+  \field{year}{2000}
+\endentry
+
+\entry{Blog_python_AEM}{online}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Prashidha}{P.}%
+     {Kharel}{K.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{PK1}
+  \strng{fullhash}{PK1}
+  \field{labelyear}{2014}
+  \field{sortinit}{P}
+  \field{title}{Formulating the Applied Element Method: Linear 2D (Part I)}
+  \verb{url}
+  \verb http://prashidha.blogspot.co.za/2014/03/formulating-applied-element-met
+  \verb hod.html
+  \endverb
+  \field{year}{2014}
+  \warn{\item Invalid format of field 'month'}
+\endentry
+
+\entry{fem_sum}{misc}{}
+  \name{author}{1}{}{%
+    {{}%
+     {Wilke}{W.}%
+     {Daniel~N.}{D.~N.}%
+     {}{}%
+     {}{}}%
+  }
+  \strng{namehash}{WDN1}
+  \strng{fullhash}{WDN1}
+  \field{labelyear}{2015}
+  \field{sortinit}{W}
+  \field{title}{Short overview of finite element method for linear elasticity}
+  \field{year}{2015}
+\endentry
+
+\lossort
+\endlossort
+
+\endinput

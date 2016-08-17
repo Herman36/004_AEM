@@ -1,0 +1,122 @@
+\section{Python Coding}
+
+As a first attempt to understand the implementation of the method, I hard coded a python program to solve two elements.  I did not make use of any functions or classes.  During this implementation several questions arose.  Some of them can easily be answered and just serves as a reminder of factors that should be considered.  Others I am unsure of the implications and how to solve the possible errors.  I included the code for python program \textit{AEM\_basic.py}.  In order to make the impact of the problems and questions listed below easier to identify and understand.  The numbers of the questions correlate with the number in the code where the problem might occur.
+
+\begin{enumerate}
+	\item Impact on d and z values if element sizes are different, specifically in height. 
+	\item Do different elements have different Kn and Ks values since it seems that d might change?
+	\item How exactly do I determine break strength for springs?
+	\item Do I just add the effects of different element pairs on the same DOF in the global stiffness matrix?
+	\item Should Kte be multiplied with L for each independent spring or can all Kte first be added together?
+	\begin{itemize}
+		\item According to matrix properties:
+		\begin{eqnarray}
+		A(B+C) = AB + AC \\
+		(A+B)C = AC + BC
+		\end{eqnarray}
+		\item It follows that:
+		\begin{eqnarray}
+		L^TK^{te}_{1}L + L^TK^{te}_{2}L = L^T(K^{te}_{1}L + K^{te}_{2}L) \\
+		L^T(K^{te}_{1}L + K^{te}_{2}L) = L^T(K^{te}_{1} + K^{te}_{2})L
+		\end{eqnarray}
+	\end{itemize}
+		Thus all $K^{te}$ matrices can be added together before the transformation matrix calculations are preformed. 
+	\item What if angle between elements aren't the same any more, don't think will happen with small deformations but for larger?
+	\item The moment caused by normal springs are pretty much always zero when even number of springs are used? 
+\end{enumerate}
+
+\paragraph{Notes on Free and prescribed degrees of freedom:}  In order to include the effects of prescribed displacements I followed the same approach as explained by [\cite{fem_sum}].  I divided the displacement and corresponding forces as well as the stiffness matrix into the free and prescribed displacement fields.  In order to do this a system had to be in place in order to identify the prescribed degrees of freedom in the displacement vector. 
+
+\paragraph{Notes on element pair interaction and stiffness matrix calculations:}
+The stiffness matrix is computed per element pair interaction rather than per element as is the case for FEM codes.  I have opted to accomplish this by using two for loops to loop over the rows and columns of a grid.  This code will need to be adjusted if the mesh does not take the form of a grid with hex elements.  These loops can be seen in row numbers 80 to 150.  First and foremost loops are placed over rows and then columns, the interaction between two horizontal elements are then computed and added to the global stiffness matrix, then the interaction between elements vertically connected are computed.  These are once again added to the global stiffness matrix.  An interesting observation can be made here where it can be shown that the stiffness matrix vertically is the same as the horizontal stiffness matrix rotated through 90 degrees using $K^e = L^T K^{te} L$, if the following values are set to be the same $\{a_1 = b_1; a_2 = b_2; a_n1 = b_n1;a_n2 = b_n2\}$ by either using square elements or changing the values of the original variables.  The proof is shown below:
+
+\begin{equation}
+K^{te}_{horizontal} = 
+\begin{bmatrix}
+K_n & 0 & -K_n b_{bn1} & -K_n & 0 & K_n b_{bn2} \\
+
+0 & K_s & K_s \frac{a_1}{2} & 0 & -K_s & K_s \frac{a_2}{2} \\
+
+-K_n b_{bn1} & K_s \frac{a_1}{2} & K_n (b_{n1})^2 + K_s (\frac{a_1}{2})^2 & K_n b_{n1} & -K_s \frac{a_1}{2} & -K_n (b_{n1} b_{n2}) + K_s (\frac{a_1}{2} \frac{a_2}{2}) \\
+
+-K_n & 0 & K_n b_{bn1} & K_n & 0 & -K_n b_{n2}  \\
+
+0 & -K_s & -K_s \frac{a_1}{2}& 0 & K_s & -K_s \frac{a_2}{2} \\
+
+K_n b_{bn2} & K_s \frac{a_2}{2} & -K_n (b_{n1} b_{n2}) + K_s (\frac{a_1}{2} \frac{a_2}{2}) & -K_n b_{n2} & -K_s \frac{a_2}{2} & K_n (b_{n2})^2 + K_s (\frac{a_2}{2})^2 \\
+\end{bmatrix}
+\label{eq:Kte horizon}
+\end{equation}
+
+\begin{equation}
+K^{te}_{vertical} = 
+\begin{bmatrix}
+K_s & 0 & -K_s \frac{b_1}{2} & -K_s & 0 & -K_s \frac{b_2}{2} \\
+
+0 & K_n & -K_n a_{n1} & 0 & -K_n & K_n a_{n2} \\
+
+-K_s \frac{b_1}{2} & -K_n a_{n1} & K_n (a_{n1})^2 + K_s (\frac{b_1}{2})^2 & K_s \frac{b_{1}}{2} & K_n a_{n1} & -K_n (a_{n1} a_{n2}) + K_s (\frac{b_1}{2} \frac{b_2}{2}) \\
+
+-K_s & 0 & K_s \frac{b_1}{2} & K_s & 0 & K_s \frac{b_2}{2}  \\
+
+0 & -K_n & K_n a_{n1} & 0 & K_n & -K_n a_{n2} \\
+
+-K_s \frac{b_2}{2} & K_n a_{n2} & -K_n (a_{n1} a_{n2}) + K_s (\frac{b_1}{2} \frac{b_2}{2}) & K_s \frac{b_2}{2} & -K_n a_{n2} & K_n (a_{n2})^2 + K_s (\frac{b_2}{2})^2 \\
+\end{bmatrix}
+\label{eq:Kte vert}
+\end{equation}
+
+\begin{equation}
+L_{\varphi,\alpha=90^0} = 
+\begin{bmatrix}
+0 & 1 & 0 & 0 & 0 & 0 \\
+- 1 & 0 & 0 & 0 & 0 & 0 \\
+0 & 0 & 1 & 0 & 0 & 0 \\
+0 & 0 & 0 & 0 & 1 & 0 \\
+0 & 0 & 0 & - 1 & 0 & 0 \\
+0 & 0 & 0 & 0 & 0 & 1 \\
+\end{bmatrix}
+\end{equation}
+
+\begin{eqnarray}
+L^T K^{te} L =
+\begin{bmatrix}
+K_s & 0 & -K_s \frac{a_1}{2} & -K_s & 0 & -K_s \frac{a_2}{2} \\
+
+0 & K_n & -K_n b_{n1} & 0 & -K_n & K_n b_{n2} \\
+
+-K_s \frac{a_1}{2} & -K_n b_{n1} & K_n (b_{n1})^2 + K_s (\frac{a_1}{2})^2 & K_s \frac{a_{1}}{2} & K_n b_{n1} & -K_n (b_{n1} b_{n2}) + K_s (\frac{a_1}{2} \frac{a_2}{2}) \\
+
+-K_s & 0 & K_s \frac{a_1}{2} & K_s & 0 & K_s \frac{a_2}{2}  \\
+
+0 & -K_n & K_n b_{n1} & 0 & K_n & -K_n b_{n2} \\
+
+-K_s \frac{a_2}{2} & K_n b_{n2} & -K_n (b_{n1} b_{n2}) + K_s (\frac{a_1}{2} \frac{a_2}{2}) & K_s \frac{a_2}{2} & -K_n b_{n2} & K_n (b_{n2})^2 + K_s (\frac{a_2}{2})^2 \\
+\end{bmatrix}
+\end{eqnarray}
+
+I however did not implement this just yet as I am unsure if it would yield faster CPU time as opposed to re-entering the matrix as I have currently done.
+
+\newpage
+\subsection{AEM\_basic}
+
+\lstinputlisting[language=Python, caption=Python AEM basic program]{../AEM_basic.py}
+
+%As a start to the coding of my own AEM program I followed a similar approach to that of \cite{Blog_python_AEM}.  
+%By writing separate classes each with its own attributes and methods will allow for easy expansion and fault finding.
+%As a starting point I followed the same approach by building the same classes.  As my program expands and grows this might change.
+%\begin{itemize}
+%	\item class: Element \\ 
+%		Defines each element with its size and material properties, similar to an input file with nodes and element properties used in FEM
+%	\item class: Elements \\
+%		Combines the elements defined into a list with all elements and degrees of freedom.  Also is used to combine matrices in the global stiffness matrix
+%	\item class: Node and Nodes \\
+%		Unsure what exactly these are used for currently
+%	\item class: Spring \\
+%		Defines spring properties and the element numbers and edges it is connected to, also contains the x and y co-ordinates of the two points of the spring
+%	\item class: Load \\ 
+%		No explanation given but I am assuming it contains all external loads on the structure
+%\end{itemize}
+
+
+

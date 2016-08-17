@@ -1,0 +1,63 @@
+This is BibTeX, Version 0.99d (TeX Live 2013/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: Main.aux
+The style file: biblatex.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Database file #1: Main-blx.bib
+Database file #2: Master_bib.bib
+Warning--I didn't find a database entry for "FirstAEM"
+Biblatex version: 2.8
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 9000 items from 6000.
+You've used 5 entries,
+            6047 wiz_defined-function locations,
+            1155 strings with 8770 characters,
+and the built_in function-call counts, 18876 in all, are:
+= -- 468
+> -- 1833
+< -- 142
++ -- 1483
+- -- 1482
+* -- 763
+:= -- 2360
+add.period$ -- 0
+call.type$ -- 5
+change.case$ -- 41
+chr.to.int$ -- 107
+cite$ -- 8
+duplicate$ -- 1509
+empty$ -- 1475
+format.name$ -- 192
+if$ -- 3028
+int.to.chr$ -- 0
+int.to.str$ -- 8
+missing$ -- 0
+newline$ -- 94
+num.names$ -- 164
+pop$ -- 1356
+preamble$ -- 1
+purify$ -- 45
+quote$ -- 0
+skip$ -- 805
+stack$ -- 0
+substring$ -- 447
+swap$ -- 463
+text.length$ -- 150
+text.prefix$ -- 4
+top$ -- 1
+type$ -- 178
+warning$ -- 0
+while$ -- 176
+width$ -- 0
+write$ -- 88
+(There was 1 warning)
