@@ -24,11 +24,11 @@ T = 0.15
 
 # Element properties
 #& Should be adjusted to load from hex_mesher
-grid = [10, 1, 0]
+grid = [10, 2, 0]
 num_ele = grid[0]*grid[1]
 el_center = np.zeros(shape=(num_ele, 3))
 el_count = 0
-for y_c in range(100, 200, 100):
+for y_c in range(50, 200, 100):
     for x_c in range(100, 2000, 200):
         el_center[el_count, 0] = el_count
         el_center[el_count, 1] = float(x_c)/1000
@@ -37,32 +37,32 @@ for y_c in range(100, 200, 100):
 
 
 a1 = 0.2         # width of element 1
-b1 = 0.200         # height of element 1
+b1 = 0.100         # height of element 1
 theta1 = 0.      # radians (for time being not applicable)
 
 #@ Seems redundent unless different size and shape elements
 #& Remove in future releases
 a2 = 0.2         # width of element 2
-b2 = 0.200         # height of element 2
+b2 = 0.100         # height of element 2
 theta2 = 0.      # radians (for time being not applicable)
 
 gap = [0.00, 0.00, 0]         # size of gap between elements
 
 # Spring properties
 #@ Assuming same number of connecting springs for horizontal and vetical
-num_spring = 8
+num_spring = 10
 
 # Prescribed displacements
     # element number, DOF, value
-Up = np.array([0, 0, 0])  #, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+Up = np.array([0, 0, 0, 0, 0, 0])
 #@ Needs to be done to read from input
 dof = np.ones(num_ele*3)
 dof[0] = 0
 dof[1] = 0
 dof[2] = 0
-#dof[120] = 0
-#dof[121] = 0
-#dof[240] = 0
+dof[30] = 0
+dof[31] = 0
+dof[32] = 0
 #dof[241] = 0
 #dof[360] = 0
 #dof[361] = 0
@@ -87,10 +87,11 @@ F = np.zeros(shape=(num_ele*3, 1))
 #F[238, 0] = -0.50e+3
 #F[358, 0] = -0.50e+3
 #F[118, 0] = -1.0e+3
-F[28, 0] = -1.0e+3
+F[27, 0] = 0.50e+5
+F[57, 0] = 0.50e+5
 
 ## End of input deck
-def AEM_basic(E, nu, G, T, gird, num_ele,
+def AEM_basic(E, nu, G, T, grid, num_ele,
               el_center, a1, a2, b1, b2, theta1, theta2, gap,
               num_spring, Up, dof, F):
     #-----------------------------------------------------------------------------#
